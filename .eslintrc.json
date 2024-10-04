@@ -2,5 +2,10 @@
   "extends": [
     "next/core-web-vitals",
     "next/typescript"
-  ]
+  ],
+  "rules": {
+    "no-console": "off",  // Disabling 'no-console' rule
+    "react/jsx-props-no-spreading": "off", // Disabling prop spreading warning
+    "react/react-in-jsx-scope": "off" // For React 17+, disabling the need to import React in every file
+  }
 }
