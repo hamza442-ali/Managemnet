@@ -21,3 +21,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+// purpose to repdoply the appication again
