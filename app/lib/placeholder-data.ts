@@ -15,36 +15,42 @@ const customers = [
     name: 'Evil Rabbit',
     email: 'evil@rabbit.com',
     image_url: '/customers/evil-rabbit.png',
+    password: "123456",
   },
   {
     id: '3958dc9e-712f-4377-85e9-fec4b6a6442a',
     name: 'Delba de Oliveira',
     email: 'delba@oliveira.com',
     image_url: '/customers/delba-de-oliveira.png',
+    password: "123456",
   },
   {
     id: '3958dc9e-742f-4377-85e9-fec4b6a6442a',
     name: 'Lee Robinson',
     email: 'lee@robinson.com',
     image_url: '/customers/lee-robinson.png',
+    password: "123456",
   },
   {
     id: '76d65c26-f784-44a2-ac19-586678f7c2f2',
     name: 'Michael Novotny',
     email: 'michael@novotny.com',
     image_url: '/customers/michael-novotny.png',
+    password: "123456",
   },
   {
     id: 'CC27C14A-0ACF-4F4A-A6C9-D45682C144B9',
     name: 'Amy Burns',
     email: 'amy@burns.com',
     image_url: '/customers/amy-burns.png',
+    password: "123456",
   },
   {
     id: '13D07535-C59E-4157-A011-F8D2EF4E0CBB',
     name: 'Balazs Orban',
     email: 'balazs@orban.com',
     image_url: '/customers/balazs-orban.png',
+    password: "123456",
   },
 ];
 
@@ -144,4 +150,53 @@ const revenue = [
   { month: 'Dec', revenue: 4800 },
 ];
 
-export { users, customers, invoices, revenue };
+// projects data
+  const projects = [
+    {
+      "id": "1",
+      "projectName": "Green Energy Initiative",
+      "projectCompanyName": "EcoPower Ltd.",
+      "projectDescription": "A project focused on developing renewable energy solutions for residential areas.",
+      "image_url": "/images/green-energy.jpg",
+      "fundraisingStatus": "Active",
+      "projectType": "Energy",
+      "location": "San Francisco, CA",
+      "fundingGoal": "500,000"
+    },
+    {
+      "id": "2",
+      "projectName": "AI Healthcare Revolution",
+      "projectCompanyName": "HealthTech Innovations",
+      "projectDescription": "Revolutionizing healthcare through artificial intelligence and machine learning.",
+      "image_url": "/images/ai-healthcare.jpg",
+      "fundraisingStatus": "Completed",
+      "projectType": "Healthcare",
+      "location": "New York, NY",
+      "fundingGoal": "2,000,000"
+    },
+    {
+      "id": "3",
+      "projectName": "Smart Cities Infrastructure",
+      "projectCompanyName": "UrbanTech Corp.",
+      "projectDescription": "Building smarter and more efficient urban infrastructure with IoT technology.",
+      "image_url": "/images/smart-cities.jpg",
+      "fundraisingStatus": "In Progress",
+      "projectType": "Infrastructure",
+      "location": "Berlin, Germany",
+      "fundingGoal": "1,200,000"
+    },
+    {
+      "id": "4",
+      "projectName": "Blockchain Payment Platform",
+      "projectCompanyName": "FinTech Solutions",
+      "projectDescription": "A decentralized payment platform using blockchain to enable secure and fast transactions.",
+      "image_url": "/images/blockchain-payment.jpg",
+      "fundraisingStatus": "Active",
+      "projectType": "Finance",
+      "location": "London, UK",
+      "fundingGoal": "750,000"
+    }
+  ]
+  
+
+export { users, customers, invoices, revenue, projects };

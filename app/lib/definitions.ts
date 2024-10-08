@@ -14,6 +14,7 @@ export type Customer = {
   name: string;
   email: string;
   image_url: string;
+  password: string;
 };
 
 export type Invoice = {
@@ -86,3 +87,19 @@ export type InvoiceForm = {
   amount: number;
   status: 'pending' | 'paid';
 };
+
+
+// projects 
+
+export type ProjectField = {
+  id: string;
+  projectName: string;
+  projectCompanyName: string;
+  projectDescription: string;
+  image_url: string;
+  fundraisingStatus: string;
+  projectType: string;
+  location: string;
+  fundingGoal: string; 
+};
+

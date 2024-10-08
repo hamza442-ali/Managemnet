@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { db } from '@vercel/postgres';
-import { invoices, customers, revenue, users } from '../lib/placeholder-data';
+import { invoices, customers, revenue, users, projects } from '../lib/placeholder-data';
 
 const client = await db.connect();
 
@@ -54,6 +54,56 @@ async function seedInvoices() {
 
   return insertedInvoices;
 }
+// seedProjects
+async function seedProjects() {
+  await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
+  await client.sql`
+    CREATE TABLE IF NOT EXISTS projects (
+      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      projectName VARCHAR(255) NOT NULL,
+      projectCompanyName VARCHAR(255) NOT NULL,
+      projectDescription TEXT NOT NULL,
+      image_url VARCHAR(255) NOT NULL,
+      fundraisingStatus VARCHAR(255) NOT NULL,
+      projectType VARCHAR(255) NOT NULL,
+      location VARCHAR(255) NOT NULL,
+      fundingGoal NUMERIC NOT NULL
+    );
+  `;
+
+  const insertedProjects = await Promise.all(
+    projects.map(
+      (project) => client.sql`
+        INSERT INTO projects (
+          projectName, 
+          projectCompanyName, 
+          projectDescription, 
+          image_url, 
+          fundraisingStatus, 
+          projectType, 
+          location, 
+          fundingGoal
+        )
+        VALUES (
+          ${project.projectName}, 
+          ${project.projectCompanyName}, 
+          ${project.projectDescription}, 
+          ${project.image_url}, 
+          ${project.fundraisingStatus}, 
+          ${project.projectType}, 
+          ${project.location}, 
+          ${project.fundingGoal}
+        )
+        ON CONFLICT (id) DO NOTHING;
+      `,
+    ),
+  );
+
+  return insertedProjects;
+}
+
+  
 
 async function seedCustomers() {
   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
@@ -63,15 +113,16 @@ async function seedCustomers() {
       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
       email VARCHAR(255) NOT NULL,
-      image_url VARCHAR(255) NOT NULL
+      image_url VARCHAR(255) NOT NULL,
+      password VARCHAR(255) NOT NULL,
     );
   `;
 
   const insertedCustomers = await Promise.all(
     customers.map(
       (customer) => client.sql`
-        INSERT INTO customers (id, name, email, image_url)
-        VALUES (${customer.id}, ${customer.name}, ${customer.email}, ${customer.image_url})
+        INSERT INTO customers (id, name, email, image_url, password)
+        VALUES (${customer.id}, ${customer.name}, ${customer.password}, ${customer.email}, ${customer.image_url})
         ON CONFLICT (id) DO NOTHING;
       `,
     ),
@@ -109,6 +160,7 @@ export async function GET() {
     await seedCustomers();
     await seedInvoices();
     await seedRevenue();
+    await seedProjects();
     await client.sql`COMMIT`;
 
     return Response.json({ message: 'Database seeded successfully' });

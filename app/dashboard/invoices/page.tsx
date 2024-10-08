@@ -21,9 +21,9 @@ export default async function Page({
     page?: string;
   };
 }) {
-  const query = searchParams?.query || '';
-  const currentPage = Number(searchParams?.page) || 1;
-  const totalPages = await fetchInvoicesPages(query);
+  const query = searchParams?.query || ''; // checking whether the searchParams provide or not
+  const currentPage = Number(searchParams?.page) || 1; 
+  const totalPages = await fetchInvoicesPages(query); // same  for the user Pagination
 
   return (
     <div className="w-full">
