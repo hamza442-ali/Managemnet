@@ -154,47 +154,47 @@ const revenue = [
   const projects = [
     {
       "id": "1",
-      "projectName": "Green Energy Initiative",
-      "projectCompanyName": "EcoPower Ltd.",
-      "projectDescription": "A project focused on developing renewable energy solutions for residential areas.",
+      "project_name": "Green Energy Initiative",
+      "project_company_name": "EcoPower Ltd.",
+      "project_description": "A project focused on developing renewable energy solutions for residential areas.",
       "image_url": "/images/green-energy.jpg",
-      "fundraisingStatus": "Active",
-      "projectType": "Energy",
+      "fundraising_status": "Active",
+      "project_type": "Energy",
       "location": "San Francisco, CA",
-      "fundingGoal": "500,000"
+      "funding_goal": "500,000"
     },
     {
       "id": "2",
-      "projectName": "AI Healthcare Revolution",
-      "projectCompanyName": "HealthTech Innovations",
-      "projectDescription": "Revolutionizing healthcare through artificial intelligence and machine learning.",
+      "project_name": "AI Healthcare Revolution",
+      "project_company_name": "HealthTech Innovations",
+      "project_description": "Revolutionizing healthcare through artificial intelligence and machine learning.",
       "image_url": "/images/ai-healthcare.jpg",
-      "fundraisingStatus": "Completed",
-      "projectType": "Healthcare",
+      "fundraising_status": "Completed",
+      "project_type": "Healthcare",
       "location": "New York, NY",
-      "fundingGoal": "2,000,000"
+      "funding_goal": "2,000,000"
     },
     {
       "id": "3",
-      "projectName": "Smart Cities Infrastructure",
-      "projectCompanyName": "UrbanTech Corp.",
-      "projectDescription": "Building smarter and more efficient urban infrastructure with IoT technology.",
+      "project_name": "Smart Cities Infrastructure",
+      "project_company_name": "UrbanTech Corp.",
+      "project_description": "Building smarter and more efficient urban infrastructure with IoT technology.",
       "image_url": "/images/smart-cities.jpg",
-      "fundraisingStatus": "In Progress",
-      "projectType": "Infrastructure",
+      "fundraising_status": "In Progress",
+      "project_type": "Infrastructure",
       "location": "Berlin, Germany",
-      "fundingGoal": "1,200,000"
+      "funding_goal": "1,200,000"
     },
     {
       "id": "4",
-      "projectName": "Blockchain Payment Platform",
-      "projectCompanyName": "FinTech Solutions",
-      "projectDescription": "A decentralized payment platform using blockchain to enable secure and fast transactions.",
+      "project_name": "Blockchain Payment Platform",
+      "project_company_name": "FinTech Solutions",
+      "project_description": "A decentralized payment platform using blockchain to enable secure and fast transactions.",
       "image_url": "/images/blockchain-payment.jpg",
-      "fundraisingStatus": "Active",
-      "projectType": "Finance",
+      "fundraising_status": "Active",
+      "project_type": "Finance",
       "location": "London, UK",
-      "fundingGoal": "750,000"
+      "funding_goal": "750,000"
     }
   ]
   

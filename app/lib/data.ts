@@ -227,16 +227,16 @@ export async function fetchProjects() {
     const data = await sql<ProjectField>`
       SELECT
       id,
-      projectName,
-      projectCompanyName,
-      projectDescription,
+      project_name,
+      project_company_name,
+      project_description,
       image_url,
-      fundraisingStatus,
-      projectType,
+      fundraising_status,
+      project_type,
       location,
-      fundingGoal
+      funding_goal
       FROM projects
-      ORDER BY projectName ASC
+      ORDER BY project_name ASC
     `;
 
     const projects = data.rows;

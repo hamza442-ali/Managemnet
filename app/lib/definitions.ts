@@ -93,13 +93,13 @@ export type InvoiceForm = {
 
 export type ProjectField = {
   id: string;
-  projectName: string;
-  projectCompanyName: string;
-  projectDescription: string;
+  project_name: string;
+  project_company_name: string;
+  project_description: string;
   image_url: string;
-  fundraisingStatus: string;
-  projectType: string;
+  fundraising_status: string;
+  project_type: string;
   location: string;
-  fundingGoal: string; 
+  funding_goal: string; 
 };
 

@@ -76,24 +76,24 @@ async function seedProjects() {
     projects.map(
       (project) => client.sql`
         INSERT INTO projects (
-          projectName, 
-          projectCompanyName, 
-          projectDescription, 
+          project_name, 
+          project_company_name, 
+          project_description, 
           image_url, 
-          fundraisingStatus, 
-          projectType, 
+          fundraising_status, 
+          project_type, 
           location, 
-          fundingGoal
+          funding_goal
         )
         VALUES (
-          ${project.projectName}, 
-          ${project.projectCompanyName}, 
-          ${project.projectDescription}, 
+          ${project.project_name}, 
+          ${project.project_company_name}, 
+          ${project.project_description}, 
           ${project.image_url}, 
-          ${project.fundraisingStatus}, 
-          ${project.projectType}, 
+          ${project.fundraising_status}, 
+          ${project.project_type}, 
           ${project.location}, 
-          ${project.fundingGoal}
+          ${project.funding_goal}
         )
         ON CONFLICT (id) DO NOTHING;
       `,
