@@ -106,6 +106,7 @@ async function seedProjects() {
   
 
 async function seedCustomers() {
+  try{
   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
   await client.sql`
@@ -129,6 +130,12 @@ async function seedCustomers() {
   );
 
   return insertedCustomers;
+
+} catch (error) {
+  // Log the error to the console
+  console.log('Error seeding customers:', error);
+  throw error; // Re-throw the error if needed
+}
 }
 
 async function seedRevenue() {

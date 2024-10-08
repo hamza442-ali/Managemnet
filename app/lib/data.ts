@@ -236,7 +236,7 @@ export async function fetchProjects() {
       location,
       fundingGoal
       FROM projects
-      ORDER BY name ASC
+      ORDER BY projectName ASC
     `;
 
     const projects = data.rows;
