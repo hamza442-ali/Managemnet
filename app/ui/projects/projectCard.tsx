@@ -1,19 +1,9 @@
 import Image from 'next/image';
 import { EditProject, DeleteProject } from './buttons'; 
-
-export type Project = {
-  id: string;
-  companyName: string;
-  imageUrl: string;
-  description: string;
-  fundraisingStatus: string;
-  projectType: string;
-  location: string;
-  fundingGoal: number;
-};
+import { ProjectField } from '@/app/lib/definitions';
 
 interface ProjectCardProps {
-  project: Project;
+  project: ProjectField;
   onClick: (projectId: string) => void; // Function to handle card click
 }
 
@@ -24,21 +14,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
       onClick={() => onClick(project.id)} // Handle card click
     >
       <Image
-        src={project.imageUrl}
-        alt={`${project.companyName} project picture`}
+        src={project.image_url}
+        alt={`${project.project_company_name} project picture`}
         width={400}
         height={200}
         className="rounded-t-lg object-cover w-full h-48"
       />
       <div className="p-4">
-        <h2 className="text-xl font-semibold">{project.companyName}</h2>
-        <p className="mt-2 text-gray-600">{project.description}</p>
+        <h2 className="text-xl font-semibold">{project.project_company_name}</h2>
+        <p className="mt-2 text-gray-600">{project.project_description}</p>
         <div className="mt-4 flex justify-between">
           <div>
-            <p className="text-sm font-medium">Status: {project.fundraisingStatus}</p>
-            <p className="text-sm">Type: {project.projectType}</p>
+            <p className="text-sm font-medium">Status: {project.fundraising_status}</p>
+            <p className="text-sm">Type: {project.project_type}</p>
             <p className="text-sm">Location: {project.location}</p>
-            <p className="text-sm">Goal: ${project.fundingGoal}</p>
+            <p className="text-sm">Goal: ${project.funding_goal}</p>
           </div>
           <div className="flex gap-2">
             <EditProject id={project.id} />

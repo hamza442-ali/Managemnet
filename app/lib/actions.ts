@@ -141,3 +141,62 @@ export async function authenticate(
     throw error;
   }
 }
+
+
+// Define the validation schema for the project
+const ProjectSchema = z.object({
+  project_name: z.string().min(1, { message: 'Project name is required.' }),
+  project_company_name: z.string().min(1, { message: 'Company name is required.' }),
+  project_description: z.string().min(1, { message: 'Project description is required.' }),
+  image_url: z.string().url({ message: 'Invalid URL format for image.' }),
+  fundraising_status: z.enum(['ongoing', 'completed'], {
+    invalid_type_error: 'Please select a fundraising status.',
+  }),
+  project_type: z.string().min(1, { message: 'Project type is required.' }),
+  location: z.string().min(1, { message: 'Location is required.' }),
+  funding_goal: z.coerce.number().gt(0, { message: 'Funding goal must be greater than $0.' }),
+});
+
+export async function createProject(formData: FormData) {
+  // Validate form using Zod
+  const validatedFields = ProjectSchema.safeParse({
+    project_name: formData.get('project_name'),
+    project_company_name: formData.get('project_company_name'),
+    project_description: formData.get('project_description'),
+    image_url: formData.get('image_url'),
+    fundraising_status: formData.get('fundraising_status'),
+    project_type: formData.get('project_type'),
+    location: formData.get('location'),
+    funding_goal: formData.get('funding_goal'),
+  });
+
+  // If form validation fails, return errors early. Otherwise, continue.
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Missing Fields. Failed to Create Project.',
+    };
+  }
+
+  // Prepare data for insertion into the database
+  const { project_name, project_company_name, project_description, image_url, fundraising_status, project_type, location, funding_goal } = validatedFields.data;
+
+  // Insert data into the database
+  try {
+    await sql`
+      INSERT INTO projects (project_name, project_company_name, project_description, image_url, fundraising_status, project_type, location, funding_goal)
+      VALUES (${project_name}, ${project_company_name}, ${project_description}, ${image_url}, ${fundraising_status}, ${project_type}, ${location}, ${funding_goal})
+    `;
+  } catch (error) {
+    // If a database error occurs, return a more specific error.
+    console.log(error);
+    
+    return {
+      message: 'Database Error: Failed to Create Project.',
+    };
+  }
+
+  // Revalidate the cache for the projects page and redirect the user.
+  revalidatePath('/dashboard/projects');
+  redirect('/dashboard/projects');
+}
