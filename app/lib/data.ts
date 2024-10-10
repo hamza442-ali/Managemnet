@@ -236,7 +236,7 @@ export async function fetchProjects() {
       location,
       funding_goal
       FROM projects
-      ORDER BY project_name ASC
+      
     `;
 
     const projects = data.rows;
@@ -244,5 +244,36 @@ export async function fetchProjects() {
   } catch (err) {
     console.error("Database Error:", err);
     throw new Error("Failed to fetch all projects.");
+  }
+}
+
+// fetch project by id
+export async function fetchProjectById(id: string) {
+  try {
+    const data = await sql<ProjectField>`
+      SELECT
+      id,
+      project_name,
+      project_company_name,
+      project_description,
+      image_url,
+      fundraising_status,
+      project_type,
+      location,
+      funding_goal
+      FROM projects
+      WHERE id = ${id}
+    `;
+
+    const project = data.rows.map((project) => ({
+      ...project,
+      // Convert amount from cents to dollars
+      funding_goal: project.funding_goal,
+    }));
+
+    return project[0];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch project.");
   }
 }

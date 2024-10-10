@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { createProject } from '@/app/lib/actions'; 
 
+
 // Define the type for the errors object
 type Errors = {
   project_name?: string[];
@@ -21,7 +22,7 @@ export default function ProjectForm() {
     project_company_name: "",
     project_description: "",
     image_url: "",
-    fundraising_status: "ongoing",
+    fundraising_status: "",
     project_type: "",
     location: "",
     funding_goal: "",
@@ -55,12 +56,11 @@ export default function ProjectForm() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Create New Project</h1>
+    <div className="rounded-md bg-gray-50 p-4 md:p-6">
       {message && <p className="mb-4 text-red-600">{message}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="project_name" className="block mb-1 font-medium">
+          <label htmlFor="project_name" className="mb-2 block text-sm font-medium">
             Project Name
           </label>
           <input
@@ -68,13 +68,16 @@ export default function ProjectForm() {
             name="project_name"
             value={formState.project_name}
             onChange={handleChange}
-            className="w-full border rounded p-2"
+            step="0.01"
+            placeholder="Enter project name"
+            className="peer block w-full rounded-md border border-gray-200 py-2  text-sm outline-2 placeholder:text-gray-500"
+            aria-describedby="customer-error"
           />
           {errors.project_name && <p className="text-red-600">{errors.project_name[0]}</p>}
         </div>
 
         <div>
-          <label htmlFor="project_company_name" className="block mb-1 font-medium">
+          <label htmlFor="project_company_name" className="mb-2 block text-sm font-medium">
             Company Name
           </label>
           <input
@@ -82,26 +85,18 @@ export default function ProjectForm() {
             name="project_company_name"
             value={formState.project_company_name}
             onChange={handleChange}
-            className="w-full border rounded p-2"
+            step="0.01"
+            placeholder="Enter company name"
+            className="peer block w-full rounded-md border border-gray-200 py-2  text-sm outline-2 placeholder:text-gray-500"
+            aria-describedby="customer-error"
           />
           {errors.project_company_name && <p className="text-red-600">{errors.project_company_name[0]}</p>}
         </div>
 
-        <div>
-          <label htmlFor="project_description" className="block mb-1 font-medium">
-            Project Description
-          </label>
-          <textarea
-            name="project_description"
-            value={formState.project_description}
-            onChange={handleChange}
-            className="w-full border rounded p-2"
-          />
-          {errors.project_description && <p className="text-red-600">{errors.project_description[0]}</p>}
-        </div>
+
 
         <div>
-          <label htmlFor="image_url" className="block mb-1 font-medium">
+          <label htmlFor="image_url" className="mb-2 block text-sm font-medium">
             Image URL
           </label>
           <input
@@ -109,21 +104,25 @@ export default function ProjectForm() {
             name="image_url"
             value={formState.image_url}
             onChange={handleChange}
-            className="w-full border rounded p-2"
+            step="0.01"
+            placeholder="give image url"
+            className="peer block w-full rounded-md border border-gray-200 py-2  text-sm outline-2 placeholder:text-gray-500"
+            aria-describedby="customer-error"
           />
           {errors.image_url && <p className="text-red-600">{errors.image_url[0]}</p>}
         </div>
 
         <div>
-          <label htmlFor="fundraising_status" className="block mb-1 font-medium">
+          <label htmlFor="fundraising_status" className="mb-2 block text-sm font-medium">
             Fundraising Status
           </label>
           <select
             name="fundraising_status"
             value={formState.fundraising_status}
             onChange={handleChange}
-            className="w-full border rounded p-2"
+            className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2  text-sm outline-2 placeholder:text-gray-500"
           >
+            <option value="" disabled>Select status</option>
             <option value="ongoing">Ongoing</option>
             <option value="completed">Completed</option>
           </select>
@@ -131,7 +130,7 @@ export default function ProjectForm() {
         </div>
 
         <div>
-          <label htmlFor="project_type" className="block mb-1 font-medium">
+          <label htmlFor="project_type" className="mb-2 block text-sm font-medium">
             Project Type
           </label>
           <input
@@ -139,13 +138,16 @@ export default function ProjectForm() {
             name="project_type"
             value={formState.project_type}
             onChange={handleChange}
-            className="w-full border rounded p-2"
+            step="0.01"
+            placeholder="Enter project type, (AI, blockchain)"
+            className="peer block w-full rounded-md border border-gray-200 py-2  text-sm outline-2 placeholder:text-gray-500"
+            aria-describedby="customer-error"
           />
           {errors.project_type && <p className="text-red-600">{errors.project_type[0]}</p>}
         </div>
 
         <div>
-          <label htmlFor="location" className="block mb-1 font-medium">
+          <label htmlFor="location" className="mb-2 block text-sm font-medium">
             Location
           </label>
           <input
@@ -153,13 +155,16 @@ export default function ProjectForm() {
             name="location"
             value={formState.location}
             onChange={handleChange}
-            className="w-full border rounded p-2"
+            step="0.01"
+            placeholder="Enter location"
+            className="peer block w-full rounded-md border border-gray-200 py-2  text-sm outline-2 placeholder:text-gray-500"
+            aria-describedby="customer-error"
           />
           {errors.location && <p className="text-red-600">{errors.location[0]}</p>}
         </div>
 
         <div>
-          <label htmlFor="funding_goal" className="block mb-1 font-medium">
+          <label htmlFor="funding_goal" className="mb-2 block text-sm font-medium">
             Funding Goal
           </label>
           <input
@@ -167,9 +172,28 @@ export default function ProjectForm() {
             name="funding_goal"
             value={formState.funding_goal}
             onChange={handleChange}
-            className="w-full border rounded p-2"
+            step="0.01"
+            placeholder="Enter USD amount"
+            className="peer block w-full rounded-md border border-gray-200 py-2  text-sm outline-2 placeholder:text-gray-500"
+            aria-describedby="customer-error"
           />
+          
           {errors.funding_goal && <p className="text-red-600">{errors.funding_goal[0]}</p>}
+        </div>
+        <div>
+          <label htmlFor="project_description" className="mb-2 block text-sm font-medium">
+            Project Description
+          </label>
+          <textarea
+            name="project_description"
+            value={formState.project_description}
+            onChange={handleChange}
+            placeholder="your description "
+            rows={6}
+            className="peer block w-full rounded-md border border-gray-200 py-2  text-sm outline-2 placeholder:text-gray-500"
+            aria-describedby="customer-error"
+          />
+          {errors.project_description && <p className="text-red-600">{errors.project_description[0]}</p>}
         </div>
 
         <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
